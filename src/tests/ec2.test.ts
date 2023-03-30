@@ -68,7 +68,9 @@ describe("EC2 Describe", () => {
         /** aws:cloudformation:stack-name: cloudxinfo */
         it(`should have expected Name Tag`, async () => {
             expect(PrivateInstance).not.toBeUndefined();
-            const Tag = PrivateInstance.Tags?.find(({ Key }) => Key === "Name");
+            const Tag = PrivateInstance.Tags?.find(({ Key }) => {
+                return Key === "Name";
+            });
             expect(Tag.Value).toBe("cloudxinfo/PrivateInstance/Instance");
         });
 
