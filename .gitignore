@@ -1,0 +1,5 @@
+.husky
+.idea
+.sensitive
+node_modules
+.env
