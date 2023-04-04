@@ -18,4 +18,8 @@ export default {
         ImageId: "ami-037953870cfa44175",
         PlatformDetails: "Linux/UNIX",
     },
+    Vpc: {
+        Id: "",
+        CidrBlock: "",
+    },
 };
