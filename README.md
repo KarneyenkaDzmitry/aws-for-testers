@@ -1,19 +1,13 @@
-# The POC of integration TestRailAPI with TAF
+# AWS for Testers
 
-## Workflow
+### Preconditions
 
-### From TAF side:
-1. ID of the test case that corresponds to TesRail test case_id
-2. The status of the test case execution
+#### Environment variables
+ - AWS_ACCESS_KEY_ID
+ - AWS_SECRET_ACCESS_KEY
+ - AWS_DEFAULT_REGION
 
-### From the TestRail API
+## Tasks:
 
-#### Preconditions: in Env
- - ENV.TESTRAIL_RUN_ID
- - ENV.TESTRAIL_USERNAME
- - ENV.TESTRAIL_PASSWORD
- - ENV.TESTRAIL_HOST
- - ENV.TESTRAIL_PORT
-1. Get Tests list in a run
-2. Match TestRail case_id with TestRail with tests[].id
-3. Update the Test by TestId with its status ()
+### EC2 module
+
