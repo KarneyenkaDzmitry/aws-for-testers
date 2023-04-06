@@ -1,5 +1,7 @@
 .husky
 .idea
+.temp
 .sensitive
 node_modules
 .env
+/**/cloudxinfo.data.ts

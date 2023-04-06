@@ -1,6 +1,7 @@
+/** https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-ec2/classes/describeinstancescommand.html */
 import { EC2Client, DescribeInstancesCommand, DescribeInstancesCommandOutput, Instance } from "@aws-sdk/client-ec2";
-import cloudxinfo from "../data/cloudxinfo.data";
-import { InstanceTypes } from "../enum/instanceType.enum";
+import cloudxinfo from "../../data/cloudxinfo.data";
+import { InstanceTypes } from "../../enum/instanceType.enum";
 const client = new EC2Client({ region: process.env.AWS_DEFAULT_REGION });
 
 /**
@@ -65,13 +66,28 @@ describe("EC2 Describe", () => {
             expect(PrivateInstance.InstanceType).toBe(InstanceTypes.T2_MICRO);
         });
 
-        /** aws:cloudformation:stack-name: cloudxinfo */
         it(`should have expected Name Tag`, async () => {
             expect(PrivateInstance).not.toBeUndefined();
             const Tag = PrivateInstance.Tags?.find(({ Key }) => {
                 return Key === "Name";
             });
             expect(Tag.Value).toBe("cloudxinfo/PrivateInstance/Instance");
+        });
+
+        it(`should have expected [aws:cloudformation:stack-name] Tag`, async () => {
+            expect(PrivateInstance).not.toBeUndefined();
+            const Tag = PrivateInstance.Tags?.find(({ Key }) => {
+                return Key === "aws:cloudformation:stack-name";
+            });
+            expect(Tag.Value).toBe("cloudxinfo");
+        });
+
+        it(`should have expected [cloudx] Tag`, async () => {
+            expect(PrivateInstance).not.toBeUndefined();
+            const Tag = PrivateInstance.Tags?.find(({ Key }) => {
+                return Key === "cloudx";
+            });
+            expect(Tag.Value).toBe("qa");
         });
 
         it(`should have expected PrivateIpAddress`, async () => {
@@ -119,6 +135,30 @@ describe("EC2 Describe", () => {
         it(`should have [${InstanceTypes.T2_MICRO}] InstanceType`, async () => {
             expect(PublicInstance).not.toBeUndefined();
             expect(PublicInstance.InstanceType).toBe(InstanceTypes.T2_MICRO);
+        });
+
+        it(`should have expected Name Tag`, async () => {
+            expect(PrivateInstance).not.toBeUndefined();
+            const Tag = PrivateInstance.Tags?.find(({ Key }) => {
+                return Key === "Name";
+            });
+            expect(Tag.Value).toBe("cloudxinfo/PrivateInstance/Instance");
+        });
+
+        it(`should have expected [aws:cloudformation:stack-name] Tag`, async () => {
+            expect(PrivateInstance).not.toBeUndefined();
+            const Tag = PrivateInstance.Tags?.find(({ Key }) => {
+                return Key === "aws:cloudformation:stack-name";
+            });
+            expect(Tag.Value).toBe("cloudxinfo");
+        });
+
+        it(`should have expected [cloudx] Tag`, async () => {
+            expect(PrivateInstance).not.toBeUndefined();
+            const Tag = PrivateInstance.Tags?.find(({ Key }) => {
+                return Key === "cloudx";
+            });
+            expect(Tag.Value).toBe("qa");
         });
 
         it(`should have expected PrivateIpAddress`, async () => {
