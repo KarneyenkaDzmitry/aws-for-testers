@@ -16,4 +16,12 @@ describe("Application: cloudxinfo", () => {
         expect(body.availability_zone).toContain(process.env.AWS_DEFAULT_REGION);
         expect(body.private_ipv4).toBe(cloudxinfo.PublicInstance.PrivateIp);
     });
+
+    it("should return Swagger API HTML document", async () => {
+        request = new Request(`http://${cloudxinfo.PublicInstance.PublicDns}`);
+        response = await request.method("get").appendPath("ui").send();
+
+        expect(response.status()).toBe(200);
+        expect(response.statusText()).toBe("OK");
+    });
 });
