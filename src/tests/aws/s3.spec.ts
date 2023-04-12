@@ -25,10 +25,6 @@ import cloudximage from "../../data/cloudximage.data";
 const s3Client = new S3Client({ region: process.env.AWS_DEFAULT_REGION });
 
 /**
- * The application is deployed in the public subnet and should be accessible by HTTP from the internet via an Internet gateway by public IP address and FQDN.
- * The application instance should be accessible by SSH protocol.
- * The application should have access to the S3 bucket via an IAM role.
- *
  * S3 bucket requirements:
  * Name: cloudximage-imagestorebucket{unique id}
  * Tags: cloudx

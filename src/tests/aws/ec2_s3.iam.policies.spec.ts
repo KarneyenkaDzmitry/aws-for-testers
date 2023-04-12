@@ -31,13 +31,10 @@ const iamClient = new IAMClient({ region: process.env.AWS_DEFAULT_REGION });
  * The application is deployed in the public subnet and should be accessible by HTTP from the internet via an Internet gateway by public IP address and FQDN.
  * The application instance should be accessible by SSH protocol.
  * The application should have access to the S3 bucket via an IAM role.
+ * Solutions:
+ *      1. Go to the EC2Instance by SSH and make CLI request to the bucket to ListObjects
+ *      2. Find All policies of the EC2Instance and verify its content. and get S3 policy to verify its content
  *
- * S3 bucket requirements:
- * Name: cloudximage-imagestorebucket{unique id}
- * Tags: cloudx
- * Encryption: disabled
- * Versioning: disabled
- * Public access: no
  */
 describe("S3 Describe", () => {
     let ec2Response: DescribeInstancesCommandOutput;
